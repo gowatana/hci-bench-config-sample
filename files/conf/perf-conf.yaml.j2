@@ -2,12 +2,12 @@ vc: '{{ vc_address }}'
 vc_username: '{{ vc_user }}' 
 vc_password: '{{ password }}' 
 datacenter_name: 'dc01' 
-cluster_name: 'CHANGE__CLUSTER_NAME' 
-network_name: 'CHANGE__PG_NAME' 
+cluster_name: 'vsan-cluster-01' 
+network_name: 'dvpg-vds01-vlan-1012' 
 static_enabled: true
 reuse_vm: false
 datastore_name: 
-- 'CHANGE__DS_NAME' 
+- 'vsanDatastore-01' 
 deploy_on_hosts: false
 hosts: 
 host_username: 
@@ -18,7 +18,7 @@ number_vm: 2
 number_data_disk: 2 
 size_data_disk: 10 
 self_defined_param_file_path: '/opt/tmp/tmp20180210220425' 
-output_path: 'CHANGE__DIR_NAME' 
+output_path: 'TEST_vsan-cluster-01_case-101' 
 warm_up_disk_before_testing: 'NONE' 
 testing_duration:  
 cleanup_vm: false
