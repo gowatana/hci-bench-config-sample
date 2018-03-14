@@ -1,0 +1,34 @@
+---
+
+- name: HCI Bench setup
+  hosts: all
+  remote_user: root
+
+  tasks:
+  - name: Load vars
+    include_vars: vsphere.yml
+
+  - name: Load Password
+    include_vars: vault/pass_{{ vc_user }}.yml
+    no_log: yes
+
+  - name: set HCI Bench config
+    template:
+      src: files/conf/perf-conf.yaml.j2
+      dest: /opt/automation/conf/perf-conf.yaml
+
+  - name: set vdbench parameter files
+    copy:
+      src: files/vdbench-param-files/{{ item }}
+      dest: /opt/automation/vdbench-param-files/{{ item }}
+    with_items:
+      - vdb-case-101
+      - vdb-case-102
+
+  - name: copy vdbench software
+    copy:
+      src: oracle/{{ item }}
+      dest: /opt/output/vdbench-source/{{ item }}
+    with_items:
+      - vdbench50406.zip
+
